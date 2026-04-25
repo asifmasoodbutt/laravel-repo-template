@@ -93,8 +93,6 @@ php artisan migrate
 php artisan serve
 ```
 
-### 5. Start Server
-
 ## 🔐 Authentication
 
 Built using Laravel Breeze:
