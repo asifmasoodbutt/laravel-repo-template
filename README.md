@@ -19,36 +19,90 @@ A clean, scalable, and production-ready Laravel starter template built using the
 
 ---
 
-## 🧠 Architecture
-Controller → Service → Repository → Model → Database
-
+## 🧠 Core Architecture Flow
+```
+Client Request
+     ↓
+Controller (Thin)
+     ↓
+Service Layer (Business Logic)
+     ↓
+Repository Layer (DB Logic)
+     ↓
+Model
+     ↓
+Database
+```
 ---
 
 ## 📁 Folder Structure
 ```
-app/
+laravel-repo-boilerplate/
 │
-├── Interfaces/
-│ └── Repositories/
+├── app/
+│   ├── Interfaces/
+│   │   └── Repositories/
+│   │       ├── UserRepositoryInterface.php
+│   │       ├── PostRepositoryInterface.php
+│   │
+│   ├── Repositories/
+│   │   ├── UserRepository.php
+│   │   ├── PostRepository.php
+│   │
+│   ├── Services/
+│   │   ├── UserService.php
+│   │   ├── PostService.php
+│   │
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── API/
+│   │   │       ├── AuthController.php
+│   │   │       ├── UserController.php
+│   │   │       ├── PostController.php
+│   │   │
+│   │   ├── Requests/
+│   │   │   ├── Auth/
+│   │   │   │   ├── LoginRequest.php
+│   │   │   │   ├── RegisterRequest.php
+│   │   │   ├── Post/
+│   │   │   │   ├── StorePostRequest.php
+│   │   │   │   ├── UpdatePostRequest.php
+│   │   │
+│   │   ├── Resources/
+│   │       ├── UserResource.php
+│   │       ├── PostResource.php
+│   │
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── Post.php
+│   │
+│   ├── Providers/
+│   │   ├── RepositoryServiceProvider.php
+│   │
+│   ├── Traits/
+│   │   ├── ApiResponseTrait.php
 │
-├── Repositories/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   │   ├── DatabaseSeeder.php
+│   │   ├── RoleSeeder.php
 │
-├── Services/
+├── routes/
+│   ├── api.php
+│   ├── web.php
 │
-├── Http/
-│ ├── Controllers/
-│ │ └── API/
-│ │
-│ ├── Requests/
-│ │
-│ ├── Resources/
+├── config/
 │
-├── Models/
+├── modules/   (optional future upgrade)
 │
-├── Providers/
-│ └── RepositoryServiceProvider.php
+├── tests/
 │
-├── Traits/
+├── .env.example
+├── .gitignore
+├── composer.json
+├── README.md
+└── artisan
 ```
 
 ---
@@ -97,11 +151,11 @@ php artisan serve
 
 Built using Laravel Breeze:
 
-Login
-Register
-Logout
-Forgot Password
-Reset Password
+- Login
+- Register
+- Logout
+- Forgot Password
+- Reset Password
 
 Optional upgrade:
 
